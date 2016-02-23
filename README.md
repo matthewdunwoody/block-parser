@@ -8,6 +8,8 @@ technique
 
 PowerShell script block logging records all code executed by the PowerShell scripting engine. Each "block" of code that is executed (commands, scripts, etc.) is recorded in a event log entry with a unique script block ID. When a script block exceeds the maximum size of an event log message, it is split into multiple event log entries. Each of these entries will have the same script block ID and will record the sequence number of the entry, along with the total number of entries associated with that script block. This tool parses and outputs the full contents of script blocks, based on their script block IDs.
 
+">" and "<" characters in the recorded PowerShell code are recorded as "&lt;" and "&gt;", respectively, in the event log. 'block-parser' reverses this substitution with a simple string replacement.
+
 Script block logging events are recorded in Event ID (EID) 4104 within the Microsoft-Windows-PowerShell%4Operational.evtx event log. 
 
 For additional information see my blog post: https://www.fireeye.com/blog/threat-research/2016/02/greater_visibilityt.html
@@ -41,3 +43,4 @@ limitations
 ===========
 
 When the PowerShell operational log rolls, some entries for a multi-part script block may be lost. If that occurs "-partial" will be appended to the file name or script block ID in output files, and the "First Message Number" in the metadata for the corresponding script block ID will be greater than one.
+
