@@ -33,8 +33,8 @@ Parse a specified script block with metadata:
 
 Each command supports: 
  >--output or --file
- --scriptid or --all
- --metadata
+ >--scriptid or --all
+ >--metadata
 
 Limitations
 ===========
