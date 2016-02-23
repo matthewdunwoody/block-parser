@@ -44,3 +44,11 @@ limitations
 
 When the PowerShell operational log rolls, some entries for a multi-part script block may be lost. If that occurs "-partial" will be appended to the file name or script block ID in output files, and the "First Message Number" in the metadata for the corresponding script block ID will be greater than one.
 
+credit where credit is due
+============
+
+This tool is built on Willi Ballenthin's excellent python-EVTX and contains code cannibalized from Willi's process-forest.
+
+https://github.com/williballenthin/python-evtx.
+
+https://github.com/williballenthin/process-forest
