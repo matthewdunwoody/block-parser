@@ -36,7 +36,6 @@ Each command supports:
 --output or --file
 
 --scriptid or --all
-
 --metadata
 
 Limitations
