@@ -12,7 +12,7 @@ Script block logging events are recorded in Event ID (EID) 4104 within the Micro
 
 For additional information see my blog post: https://www.fireeye.com/blog/threat-research/2016/02/greater_visibilityt.html
 
-Example Usage
+example usage
 =============
 
 Parse all multi-part script blocks from a log to separate files:
@@ -37,7 +37,7 @@ Each command supports:
 --scriptid or --all, 
 --metadata
 
-Limitations
+limitations
 ===========
 
 When the PowerShell operational log rolls, some entries for a multi-part script block may be lost. If that occurs "-partial" will be appended to the file name or script block ID in output files, and the "First Message Number" in the metadata for the corresponding script block ID will be greater than one.
