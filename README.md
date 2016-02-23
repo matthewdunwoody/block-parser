@@ -31,9 +31,12 @@ Parse a specified script block with metadata:
 
 > python block-parser.py -o C:\path -s 00000000-0000-0000-0000-000000000000 -m C:\path\metadata.csv C:\data\Microsoft-Windows-PowerShell%4Operational.evtx
 
-Each command supports: 
+Each command supports:
+
 --output or --file
+
 --scriptid or --all
+
 --metadata
 
 Limitations
