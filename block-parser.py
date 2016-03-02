@@ -153,9 +153,9 @@ def output_result(blocks, metadata, o, f, m):
 def main():
     import argparse
     parser = argparse.ArgumentParser(
-        description="Parse PowerShell script block log entries (EID 4104) out of the Microsoft-Windows-PowerShell%4Operational.evtx event log. By default, reconstructs all multi-message blocks.")
+        description="Parse PowerShell script block log entries (EID 4104) out of the Microsoft-Windows-PowerShell%%4Operational.evtx event log. By default, reconstructs all multi-message blocks.")
     parser.add_argument("evtx", type=str,
-                        help="Path to the Microsoft-Windows-PowerShell%4Operational.evtx event log file to parse")
+                        help="Path to the Microsoft-Windows-PowerShell%%4Operational.evtx event log file to parse")
     parser.add_argument("-m",  "--metadata", type=str,
                         help="Output script block metadata to CSV. Specify output file.")
     parser.add_argument("-s", "--scriptid", type=str,
