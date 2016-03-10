@@ -25,5 +25,5 @@ setup(
 
     packages=find_packages(),
     install_requires=['python-evtx', 'lxml'],
-    scripts=['block-parser/block-parser.py'],
+    scripts=[path.join(here, 'block-parser.py')],
 )
