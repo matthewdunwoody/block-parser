@@ -36,7 +36,7 @@ def to_lxml(record_xml):
             record_xml.replace("xmlns=\"http://schemas.microsoft.com/win/2004/08/events/event\"", ""))
             
 class ScriptBlockEntry(object):
-    def __init__(self, level, computer, timestamp, message_number, message_total, script_block_id, path, script_block_text):
+    def __init__(self, level, computer, timestamp, message_number, message_total, script_block_id, script_block_text):
         super(ScriptBlockEntry, self).__init__()
         self.level = level
         self.computer = computer
@@ -44,11 +44,10 @@ class ScriptBlockEntry(object):
         self.message_number = message_number
         self.message_total = message_total
         self.script_block_id = script_block_id
-        self.path = path
         self.script_block_text = script_block_text
     
     def get_metadata(self):
-        return self.script_block_id + "," + str(self.timestamp) + "," + str(self.level) + "," + str(self.path) + "," + str(self.message_total) + "," + self.computer + "," + str(self.message_number) 
+        return self.script_block_id + "," + str(self.timestamp) + "," + str(self.level) + "," + str(self.message_total) + "," + self.computer + "," + str(self.message_number) 
 
 class Entry(object):
     def __init__(self, xml, record):
@@ -70,9 +69,8 @@ class Entry(object):
         message_number = int(self.get_xpath("/Event/EventData/Data[@Name='MessageNumber']").text)
         message_total = int(self.get_xpath("/Event/EventData/Data[@Name='MessageTotal']").text)
         script_block_id = self.get_xpath("/Event/EventData/Data[@Name='ScriptBlockId']").text
-        path = self.get_xpath("/Event/EventData/Data[@Name='Path']").text
         script_block_text = self.get_xpath("/Event/EventData/Data[@Name='ScriptBlockText']").text
-        return ScriptBlockEntry(level, computer, timestamp, message_number, message_total, script_block_id, path, script_block_text)
+        return ScriptBlockEntry(level, computer, timestamp, message_number, message_total, script_block_id, script_block_text)
         
 def get_entries(evtx):
     """
