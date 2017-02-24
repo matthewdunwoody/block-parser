@@ -76,11 +76,14 @@ def get_entries(evtx):
     """
     @rtype: generator of Entry
     """
-    for xml, record in evtx_file_xml_view(evtx.get_file_header()):
-        try:
-            yield Entry(xml, record)
-        except etree.XMLSyntaxError as e:
-            continue
+    try:
+        for xml, record in evtx_file_xml_view(evtx.get_file_header()):
+            try:
+                yield Entry(xml, record)
+            except: # etree.XMLSyntaxError as e:
+                continue
+    except:
+        yield None
 
 def get_entries_with_eids(evtx, eids):
     """
@@ -88,8 +91,11 @@ def get_entries_with_eids(evtx, eids):
     @rtype: generator of Entry
     """
     for entry in get_entries(evtx):
-        if entry.get_eid() in eids:
-            yield entry
+        try:
+            if entry != None and entry.get_eid() in eids:
+                yield entry
+        except:
+            continue
 
 def process_entries(entries, s, a, o, f, m):
     blocks = defaultdict(list)
