@@ -32,8 +32,12 @@ def to_lxml(record_xml):
     """
     @type record: Record
     """
-    return etree.fromstring("<?xml version=\"1.0\" encoding=\"utf-8\" standalone=\"yes\" ?>%s" %
-            record_xml.replace("xmlns=\"http://schemas.microsoft.com/win/2004/08/events/event\"", ""))
+    try:
+        return etree.fromstring("<?xml version=\"1.0\" encoding=\"utf-8\" standalone=\"yes\" ?>%s" %
+          record_xml.replace("xmlns=\"http://schemas.microsoft.com/win/2004/08/events/event\"", ""))
+    except:
+        return etree.fromstring("<?xml version=\"1.0\" encoding=\"utf-8\" standalone=\"yes\" ?>%s" %
+          record_xml.replace("xmlns=\"http://schemas.microsoft.com/win/2004/08/events/event\"", "").encode('utf-8')) 
             
 class ScriptBlockEntry(object):
     def __init__(self, level, computer, timestamp, message_number, message_total, script_block_id, script_block_text):
@@ -116,7 +120,7 @@ def output_result(blocks, metadata, o, f, m):
 
     if blocks:
         if f:
-            if not os.path.isdir(os.path.dirname(f)):
+            if not os.path.isdir(os.path.abspath(os.path.dirname(f))):
                 os.makedirs(os.path.dirname(f))
             fw = open(f, "w")
             k = blocks.keys()
@@ -142,7 +146,7 @@ def output_result(blocks, metadata, o, f, m):
                 fw.close()
 
         if m:
-            if not os.path.isdir(os.path.dirname(m)):
+            if not os.path.isdir(os.path.abspath(os.path.dirname(m))):
                 os.makedirs(os.path.dirname(m))
             fw = open(m, "w")
             fw.write(header)
