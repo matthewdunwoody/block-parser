@@ -156,7 +156,7 @@ def output_result(blocks, metadata, o, f, m):
             fw.close()
             
     else:
-        print "No blocks found"
+        print("No blocks found")
 
 def main():
     import argparse
